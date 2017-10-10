@@ -12,7 +12,7 @@ class HomePageView(generic.TemplateView):
     template_name = "_home.html"
 
 
-class SignUpView(generic.CreateView, AnonymousRequiredMixin, FormValidMessageMixin):
+class SignUpView(AnonymousRequiredMixin, FormValidMessageMixin, generic.CreateView):
     # TODO: automatically sign in registered user
     form_class = RegistrationForm
     success_url = reverse_lazy('signin')
@@ -22,7 +22,7 @@ class SignUpView(generic.CreateView, AnonymousRequiredMixin, FormValidMessageMix
     form_valid_message = "Successfully signed up."
 
 
-class LoginView(generic.FormView, AnonymousRequiredMixin, FormValidMessageMixin):
+class LoginView(AnonymousRequiredMixin, FormValidMessageMixin, generic.FormView):
     form_class = LoginForm
     success_url = reverse_lazy('home')
     template_name = 'accounts/login.html'
@@ -41,7 +41,7 @@ class LoginView(generic.FormView, AnonymousRequiredMixin, FormValidMessageMixin)
             return self.form_invalid(form)
 
 
-class LogOutView(generic.RedirectView, LoginRequiredMixin, MessageMixin):
+class LogOutView(LoginRequiredMixin, MessageMixin, generic.RedirectView):
     url = reverse_lazy('home')
 
     def get(self, request, *args, **kwargs):
