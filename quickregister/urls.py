@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from clubs.views import club
 from .views import HomePageView, SignUpView, LoginView, LogOutView
 
 urlpatterns = [
@@ -23,5 +24,7 @@ urlpatterns = [
     url('^$', HomePageView.as_view(), name='home'),
     url(r'^accounts/register/$', SignUpView.as_view(), name="signup"),
     url(r'^accounts/login/$', LoginView.as_view(), name='login'),
-    url(r'^accounts/logout/$', LogOutView.as_view(), name='logout')
+    url(r'^accounts/logout/$', LogOutView.as_view(), name='logout'),
+    # view club
+    url(r'^clubs/(?P<slug>[\w\-]+)/$', club),
 ]

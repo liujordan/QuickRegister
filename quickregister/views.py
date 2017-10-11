@@ -15,7 +15,7 @@ class HomePageView(generic.TemplateView):
 class SignUpView(AnonymousRequiredMixin, FormValidMessageMixin, generic.CreateView):
     # TODO: automatically sign in registered user
     form_class = RegistrationForm
-    success_url = reverse_lazy('signin')
+    success_url = reverse_lazy('login')
     model = User
     template_name = 'accounts/signup.html'
     # this doesn't show

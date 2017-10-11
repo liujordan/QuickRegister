@@ -1,3 +1,4 @@
-quickregister/__pycache__/*
 .idea/*
 db.sqlite3
+clubs/migrations/*
+__pycache__
