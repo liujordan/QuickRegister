@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'clubs'
+    'clubs',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

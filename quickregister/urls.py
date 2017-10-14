@@ -13,10 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 
-from clubs.views import club
 from .views import HomePageView, SignUpView, LoginView, LogOutView
 
 urlpatterns = [
@@ -26,5 +25,5 @@ urlpatterns = [
     url(r'^accounts/login/$', LoginView.as_view(), name='login'),
     url(r'^accounts/logout/$', LogOutView.as_view(), name='logout'),
     # view club
-    url(r'^clubs/(?P<slug>[\w\-]+)/$', club),
+    url(r'^clubs/', include('clubs.urls')),
 ]

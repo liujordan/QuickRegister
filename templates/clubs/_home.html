@@ -1,0 +1,8 @@
+{% extends '_layouts/base.html' %}
+
+{% block headline %}<h1>Join a club!!!!</h1>{% endblock headline %}
+
+{% block content %}
+<p>Howdy{% if user.is_authenticated %} {{ user.username }}{% endif %}!</p>
+<p>Join a club!</p>
+{% endblock %}

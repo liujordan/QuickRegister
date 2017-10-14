@@ -53,9 +53,9 @@ class Membership(models.Model):
     """ Model for the membership. Acts as an intermediary model of Profile and Club"""
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
-    date_requested = models.DateField()
-    accepted = models.BooleanField()
-    is_admin = models.BooleanField()
+    date_requested = models.DateField(auto_now_add=True, blank=True)
+    accepted = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["date_requested"]
