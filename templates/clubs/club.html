@@ -4,6 +4,7 @@
 
 {% block content %}
     <p>{{club.description}}</p>
+    <p>This club's members are {{club.get_first_member}}</p>
     <button class="btn btn-primary club-join">Join now</button>
 {% endblock %}
 

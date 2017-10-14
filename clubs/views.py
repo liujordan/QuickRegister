@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
-from clubs.models import Club, Membership
+from clubs.models import Club
+from profiles.models import Membership
 import logging
 
 logger = logging.getLogger(__name__)

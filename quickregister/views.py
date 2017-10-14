@@ -18,15 +18,13 @@ class SignUpView(AnonymousRequiredMixin, FormValidMessageMixin, generic.CreateVi
     success_url = reverse_lazy('login')
     model = User
     template_name = 'accounts/signup.html'
-    # this doesn't show
-    form_valid_message = "Successfully signed up."
+    form_valid_message = "Successfully signed up. Please log in."
 
 
 class LoginView(AnonymousRequiredMixin, FormValidMessageMixin, generic.FormView):
     form_class = LoginForm
     success_url = reverse_lazy('home')
     template_name = 'accounts/login.html'
-    # this doesn't show
     form_valid_message = "You are now logged in."
 
     def form_valid(self, form):
