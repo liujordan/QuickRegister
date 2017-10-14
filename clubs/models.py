@@ -36,6 +36,8 @@ class Profile(models.Model):
     # resume
     resume = models.FileField(upload_to='uploads/')
 
+    # clubs for a profile
+    clubs = models.ManyToManyField(Club, through='Membership')
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -45,3 +47,15 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+
+
+class Membership(models.Model):
+    """ Model for the membership. Acts as an intermediary model of Profile and Club"""
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    date_requested = models.DateField()
+    accepted = models.BooleanField()
+    is_admin = models.BooleanField()
+
+    class Meta:
+        ordering = ["date_requested"]

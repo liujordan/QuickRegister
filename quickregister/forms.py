@@ -11,6 +11,7 @@ class RegistrationForm(UserCreationForm):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             'username',
+            'email',
             'password1',
             'password2',
             ButtonHolder(

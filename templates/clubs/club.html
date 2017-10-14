@@ -1,14 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{club.club_name}}</title>
-</head>
+{% extends '_layouts/base.html' %}
 
-<body>
+{% block headline %}<h1>{{club.club_name}}</h1>{% endblock headline %}
+
 {% block content %}
-    <h1>Club Name: {{club.club_name}}</h1>
-    <p>Description: {{club.description}}</p>
+    <p>{{club.description}}</p>
+    <button class="btn btn-primary club-join">Join now</button>
+
 {% endblock %}
-</body>
-</html>
+
+{% block js %}
+<script>
+$(document).ready(function() {
+    // joining a club button
+    $('.club-join').click(function() {
+        $.post("", function(data) {
+            // load the data
+            console.log(data);
+        });
+    });
+});
+</script>
+{% endblock %}
