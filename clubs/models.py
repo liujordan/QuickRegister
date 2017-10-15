@@ -22,4 +22,5 @@ class Club(models.Model):
         return reverse('clubs.views.club', args=[self.slug])
 
     def get_first_member(self):
-        return self.profile_set.all()[0]
+        return ", ".join([str(x.user.username) for x in self.profile_set.all()])
+

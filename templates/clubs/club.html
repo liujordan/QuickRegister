@@ -1,23 +1,12 @@
 {% extends '_layouts/base.html' %}
-
+{% load club_extras %}
 {% block headline %}<h1>{{club.club_name}}</h1>{% endblock headline %}
 
 {% block content %}
     <p>{{club.description}}</p>
     <p>This club's members are {{club.get_first_member}}</p>
-    <button class="btn btn-primary club-join">Join now</button>
-{% endblock %}
+    {% if not request.user|has_club:club.slug %}
+        <a href="{% url 'clubs:join' slug=club.slug%}" class="btn btn-default navbar-btn">Join Now</a>
+    {% endif %}
 
-{% block js %}
-<script>
-$(document).ready(function() {
-    // joining a club button
-    $('.club-join').click(function() {
-        $.post("./join/", function(data) {
-            // load the data
-            console.log(data);
-        });
-    });
-});
-</script>
 {% endblock %}
