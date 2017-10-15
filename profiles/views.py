@@ -1,5 +1,6 @@
 from profile import Profile
 
+from braces.views import MessageMixin
 from django.shortcuts import render, redirect
 
 

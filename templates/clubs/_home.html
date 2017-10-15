@@ -1,8 +1,10 @@
 {% extends '_layouts/base.html' %}
 
-{% block headline %}<h1>Join a club!!!!</h1>{% endblock headline %}
+{% block headline %}<h1>Join a club, {{user.username}}!</h1>{% endblock headline %}
 
 {% block content %}
-<p>Howdy{% if user.is_authenticated %} {{ user.username }}{% endif %}!</p>
-<p>Join a club!</p>
+<h3>Clubs you are part of:</h3>
+{% for club in user.profile.get_clubs %}
+    <ul>{{club}}</ul>
+{% endfor %}
 {% endblock %}

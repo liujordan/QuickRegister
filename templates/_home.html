@@ -3,5 +3,9 @@
 {% block headline %}<h1>Welcome to Quick Register</h1>{% endblock headline %}
 
 {% block content %}
-<p>Howdy{% if user.is_authenticated %} {{ user.username }}{% endif %}!</p>
+{% if user.is_authenticated %}
+<p>Howdy {{ user.username }}!</p>
+{% else %}
+<p>Not logged in.</p>
+{% endif %}
 {% endblock %}

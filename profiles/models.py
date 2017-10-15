@@ -45,7 +45,11 @@ class Profile(models.Model):
 
     def part_of_club(self, club):
         """ Returns True if self is part of club, False otherwise """
-        return club in self.club_set
+        return club in self.clubs.all()
+
+    def get_clubs(self):
+        """ returns the clubs Profile is part of """
+        return self.clubs.all()
 
 
 class Membership(models.Model):

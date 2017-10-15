@@ -7,9 +7,9 @@
     {% csrf_token %}
     <div class="form-group">
         <label for="primary_language">Enter Primary Language: </label>
-        <input class="form-control" id="primary_language" type="text" name="primary_language">
+        <input class="form-control" id="primary_language" type="text" name="primary_language" value="{{ user.profile.primary_language }}">
         <label for="secondary_language">Enter Secondary Language: </label>
-        <input class="form-control" id="secondary_language" type="text" name="secondary_language">
+        <input class="form-control" id="secondary_language" type="text" name="secondary_language" value="{{ user.profile.secondary_language}}">
     </div>
 
     <input class="form-control" type="submit" value="OK">
