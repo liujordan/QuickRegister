@@ -1,7 +1,6 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, ButtonHolder, Submit
 from django import forms
-from django.contrib.auth.models import User
 
 
 class UpdateProfileForm(forms.ModelForm):
@@ -16,7 +15,3 @@ class UpdateProfileForm(forms.ModelForm):
                 Submit('profile', 'Update Profile', css_class='btn-primary')
             )
         )
-
-    class Meta:
-        model = User.profile
-        fields = ("primary_language", "secondary_language")

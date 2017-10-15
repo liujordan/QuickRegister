@@ -26,5 +26,5 @@ urlpatterns = [
     url(r'^accounts/logout/$', LogOutView.as_view(), name='logout'),
     # view club
     url(r'^clubs/', include('clubs.urls')),
-
+    url(r'^profile/', include('profiles.urls'))
 ]

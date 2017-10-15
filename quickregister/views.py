@@ -3,6 +3,7 @@ from __future__ import absolute_import
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 from braces.views import AnonymousRequiredMixin, FormValidMessageMixin, LoginRequiredMixin, MessageMixin
+
 from .forms import LoginForm, RegistrationForm
 from django.contrib.auth.models import User
 from django.views import generic
