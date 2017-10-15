@@ -16,18 +16,18 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # year of admission and graduation
-    year_of_admission = models.DateField()
-    year_of_graduation = models.DateField()
+    year_of_admission = models.DateField(blank=True)
+    year_of_graduation = models.DateField(blank=True)
 
     # major of studies
-    major_of_studies = models.CharField(max_length=50)
+    major_of_studies = models.CharField(max_length=50, blank=True)
 
     # languages
-    primary_language = models.CharField(max_length=30)
-    secondary_language = models.CharField(max_length=30)
+    primary_language = models.CharField(max_length=30, blank=True)
+    secondary_language = models.CharField(max_length=30, blank=True)
 
     # resume
-    resume = models.FileField(upload_to='uploads/resume')
+    resume = models.FileField(upload_to='uploads/resume', blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.display_name)

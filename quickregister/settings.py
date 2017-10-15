@@ -55,7 +55,7 @@ ROOT_URLCONF = 'quickregister.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR)],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,4 +122,4 @@ STATIC_URL = '/static/'
 
 
 # Customization
-AUTHENTICATION_BACKENDS = ['quickregister.backend']
+AUTHENTICATION_BACKENDS = ['quickregister.backend.EmailBackend']
