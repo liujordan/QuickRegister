@@ -1,12 +1,12 @@
 from django.contrib.auth.models import User
 from django.db import models
-
 # Create your models here.
 from django.db.models import EmailField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from clubs.models import Club
+from events.models import Event
 
 
 class Profile(models.Model):
@@ -26,6 +26,7 @@ class Profile(models.Model):
 
     # clubs for a profile
     clubs = models.ManyToManyField(Club, through='Membership')
+    events = models.ManyToManyField(Event, through='Attendee')
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -51,6 +52,10 @@ class Profile(models.Model):
         """ returns the clubs Profile is part of """
         return self.clubs.all()
 
+    def get_events(self):
+        """ Returns the events Profile is part of"""
+        return self.events.all()
+
 
 class Membership(models.Model):
     """ Model for the membership. Acts as an intermediary model of Profile and Club"""
@@ -65,3 +70,21 @@ class Membership(models.Model):
 
     class Meta:
         ordering = ["date_requested"]
+
+
+class Attendee(models.Model):
+    """ Model for the attendee. Acts as an intermediary model of Profile and Event"""
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    date_requested = models.DateField(auto_now_add=True, blank=True)
+    rsvped = models.BooleanField(default=False)
+
+
+    def __str__(self):
+        return str(self.profile) + " > " + str(self.event)
+
+    class Meta:
+        ordering = ["date_requested"]
+
+
+

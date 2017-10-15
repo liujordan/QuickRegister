@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from clubs.views import JoinView
+
 from .views import HomePageView, SignUpView, LoginView, LogOutView
 
 urlpatterns = [
@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^accounts/logout/$', LogOutView.as_view(), name='logout'),
     # view club
     url(r'^clubs/', include('clubs.urls')),
-    url(r'^profile/', include('profiles.urls'))
+    url(r'^profiles/', include('profiles.urls')),
+    url(r'^events/', include('events.urls'))
 ]
