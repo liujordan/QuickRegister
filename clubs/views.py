@@ -6,6 +6,8 @@ from profiles.models import Membership
 import logging
 
 logger = logging.getLogger(__name__)
+
+
 def index(request):
     # get all clubs
     clubs = Club.objects
@@ -17,6 +19,7 @@ def club(request, slug):
     club = get_object_or_404(Club, slug=slug)
     # now return the rendered template
     return render(request, 'clubs/club.html', {'club': club})
+
 
 def join(request, slug):
     logger.info("Triggered")
