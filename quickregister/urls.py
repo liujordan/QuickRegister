@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+
+from quickregister.views import *
 
 urlpatterns = [
+    url(r'^$', HomePageView.as_view(), name='home'),
+    # url(r'^', include('django.contrib.auth.urls'))
     url(r'^admin/', admin.site.urls),
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, {'template_name': 'logout', 'next_page': '/'}, name='logout'),
     url(r'^profile/', include('profiles.urls')),
-    url(r'^', include('django.contrib.auth.urls'))
 ]
