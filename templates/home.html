@@ -5,5 +5,6 @@
 {% block headline %}<h1>Home</h1>{% endblock %}
 
 {% block content %}
-Boo!
+<p>Boo!</p>
+<p>{% if user.is_authenticated %}{{user.pk}}{% endif %}</p>
 {% endblock %}

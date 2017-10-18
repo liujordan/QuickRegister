@@ -25,5 +25,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, {'template_name': 'logout', 'next_page': '/'}, name='logout'),
-    url(r'^profile/', include('profiles.urls')),
+    url(r'^profiles/', include('profiles.urls')),
 ]

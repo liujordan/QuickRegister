@@ -1,16 +1,20 @@
-from django.contrib.auth.models import User
-from django.shortcuts import render
-
 # Create your views here.
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, CreateView
 
 from profiles.models import Profile
 
 
-class ViewProfileView(DetailView):
+class ProfileCreateView(CreateView):
+    model = Profile
+    template_name = 'profiles/create.html'
+    fields = ['primary_language', 'secondary_language', 'major_of_studies',
+              'year_of_admission', 'year_of_graduation', 'resume']
+
+class ProfileHomeView(DetailView):
     model = Profile
     template_name_suffix = "_view"
-
+    fields = ['primary_language', 'secondary_language', 'major_of_studies',
+              'year_of_admission', 'year_of_graduation', 'resume']
 
 class ProfileEditView(UpdateView):
     model = Profile
