@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.template.defaultfilters import slugify
 
 
 class Profile(models.Model):
@@ -10,14 +9,14 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # year of admission and graduation
-    year_of_admission = models.DateField(blank=True)
-    year_of_graduation = models.DateField(blank=True)
+    year_of_admission = models.DateField()
+    year_of_graduation = models.DateField()
 
     # major of studies
-    major_of_studies = models.CharField(max_length=50, blank=True)
+    major_of_studies = models.CharField(max_length=50)
 
     # languages
-    primary_language = models.CharField(max_length=30, blank=True)
+    primary_language = models.CharField(max_length=30)
     secondary_language = models.CharField(max_length=30, blank=True)
 
     # resume

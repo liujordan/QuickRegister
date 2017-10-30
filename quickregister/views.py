@@ -7,7 +7,6 @@ from django.views.generic import TemplateView
 class HomePageView(TemplateView):
     template_name = 'home.html'
 
-
 def redirect_if_logged_in(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse_lazy('home'))
