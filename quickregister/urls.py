@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^$', HomePageView.as_view(), name='home'),
     # url(r'^', include('django.contrib.auth.urls'))
     url(r'^admin/', admin.site.urls),
-    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^login/$', redirect_if_logged_in, name='login'),
     url(r'^logout/$', auth_views.logout, {'template_name': 'logout', 'next_page': '/'}, name='logout'),
     url(r'^profiles/', include('profiles.urls')),
 ]
