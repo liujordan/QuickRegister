@@ -1,17 +1,116 @@
+<!DOCTYPE>
+<html>
+<head>
+  <link href="" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load widget_tweaks %}
+</head>
+<body>
+<style>
+    body {
+     font-family: 'Source Sans Pro';
+     background-color: #f7f7f7;
+    }
+    .login-card.mdl-card {
+      width: 456px;
+      height: 396px;
+    }
+    .login-card > .mdl-card__title {
+      color: #fff;
+      height: 176px;
+      background: url('../assets/demos/welcome_card.jpg') center / cover;
+    }
+    .login-card > .mdl-card__menu {
+      color: #fff;
+    }
+    .Rectangle-4 {
+      width: 360px;
+      height: 60px;
+      border-radius: 5px;
+      border: solid 2px #efefef;
+    }
+    .Rectangle-4-submit {
+      width: 180px;
+      height: 60px;
+      border-radius: 5px;
+      background-color: #fc5a2b;
+      border: solid 2px #fc5a2b;
+    }
+    .Rectangle-4-forgot {
+      width: 180px;
+      height: 60px;
+      border-radius: 5px;
+      background-color:rgba(0, 0, 0, 0);
+      border: 2px solid rgba(0, 0, 0, 0);
+    }
+    .Bg_Popup {
+      width: 456px;
+      height: 396px;
+      border-radius: 5px;
+      background-color: #ffffff;
+      border: 2px solid #efefef;
+      padding: 45px;
+    }
+    .SIGN-IN {
+      width: 59px;
+      height: 23px;
+      font-family: SourceSansPro;
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      color: #ffffff;
+    }
+    .Forget-Password {
+      width: 137px;
+      height: 23px;
+      font-family: SourceSansPro;
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      color: #afafaf;
+      color: var(--greyish);
+    }
 
-{% extends '_layouts/base.html' %}
-
-{% block title %}Quak registrar | {{ block.super }}{% endblock %}
-
-{% block headline %}<h2>Login</h2>{% endblock %}
-
-{% block content %}
-<form method="post">
-    <div class="form-group">
-    {% csrf_token %}
-    {{form.as_p}}
+</style>
+<div class="centeritems mdl-grid">
+  <div class="mdl-layout-spacer"></div>
+  <div class="mdl-cell mdl-cell--4-col">
+    <div class="Bg_Popup login-card mdl-card mdl-shadow--2dp ">
+      <form method="POST" class="viewform">{% csrf_token %}
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--12-col">
+            <h2 class="mdl-card__title-text">Sign in</h2>
+          </div>
+        </div>
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--12-col">
+            {{ form.username |add_class:"Rectangle-4"}}
+          </div>
+        </div>
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--12-col">
+            {{ form.password |add_class:"Rectangle-4"}}
+          </div>
+        </div>
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--6-col">
+            <button type="submit" name="_submit" class="Rectangle-4-submit">
+              <span class="SIGN-IN">SIGN-IN</span>
+            </button>
+          </div>
+          <div class="mdl-cell mdl-cell--6-col">
+            <button type="submit" name="_submit" class="Rectangle-4-forgot">
+              <span class="Forget-Password">Forget Password?</span>
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
-
-    <button type="submit" class="btn btn-default btn-success">Login</button>
-</form>
-{% endblock %}
+  </div>
+  <div class="mdl-layout-spacer"></div>
+</div>
+</body>
+</html>
