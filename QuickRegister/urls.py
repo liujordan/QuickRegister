@@ -21,7 +21,7 @@ from .views import *
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('login/', auth_views.login, name='login'),
-    path('^signup/$', signup, name='signup'),
+    path('signup/', signup, name='signup'),
     path('logout/', auth_views.logout, {'next_page': '/'}, name='logout'),
     path('admin/', admin.site.urls),
 ]
