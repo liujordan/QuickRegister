@@ -28,13 +28,13 @@ class Profile(models.Model):
         """ (Profile) -> str
         Returns the full name of a user
         """
-        return self.user.first_name + " " + self.user.last_name
+        return self.user.username + "'s Profile"
 
     def get_absolute_url(self):
         return u'/profile/{}'.format(self.id)
 
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
-    if not created:
+    if created:
         Profile.objects.create(user=instance)
     instance.profile.save()
