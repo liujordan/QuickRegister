@@ -1,6 +1,8 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
+from django.views.generic import TemplateView
+
 
 
 def signup(request):
@@ -27,3 +29,6 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+class HomeView(TemplateView):
+	template_name = 'QuickRegister/index.html'
