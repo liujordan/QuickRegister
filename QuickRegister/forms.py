@@ -15,12 +15,9 @@ class SignUpForm(UserCreationForm):
     primary_language = forms.CharField(help_text="Primary Language")
     secondary_language = forms.CharField(help_text="Secondary Language")
 
-    # resume
-    resume = forms.FileField(help_text="Resume (Optional)")
-
     class Meta:
         model = User
         fields = ('username', 'password1', 'password2',
                   'year_of_admission', 'year_of_graduation',
                   'major_of_studies', 'primary_language',
-                  'secondary_language', 'resume',)
+                  'secondary_language',)
