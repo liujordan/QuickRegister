@@ -3,5 +3,9 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis unde accusamus rerum consectetur modi maiores officia sint, laudantium, id fugit? Reiciendis amet labore quidem, quam minus necessitatibus debitis quia modi?
+{% if user.is_authenticated %}
+<a href="logout/">Logout</a>
+{% else %}
+<a href="login/">Login</a>
+{% endif %}
 {% endblock %}
