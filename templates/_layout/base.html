@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>{% block title %}{% endblock %}</title>
-</head>
-<body>
-	{% block content %}
-	{% endblock %}
-</body>
+{% load static %}
+{% load sass_tags %}
+{% load bootstrap3 %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      {% bootstrap_css %}
+      {% bootstrap_messages %}
+    <link rel="stylesheet" type="text/css" href="{% sass_src 'css/main.scss' %}" />
+      {% block css %}
+      {% endblock %}
+    <title>{% block title %}QuickRegister{% endblock %}</title>
+  </head>
+  <body>
+    <div class="container">
+        {% block header %}{% endblock %}
+        <main>
+          {% block content %}
+          {% endblock %}
+        </main>
+    </div>
+
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  {% bootstrap_javascript %}
+  {% block js %}
+  {% endblock %}
 </html>

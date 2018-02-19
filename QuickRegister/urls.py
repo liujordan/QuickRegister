@@ -24,6 +24,7 @@ urlpatterns = [
     path('accounts/login/', auth_views.login, name='login'),
     path('signup/', signup, name='signup'),
     path('logout/', auth_views.logout, {'next_page': '/'}, name='logout'),
+    path('profile/', update_profile, name="edit_profile"),
     path('admin/', admin.site.urls),
     path('clubs/', include('clubs.urls')),
 ]
