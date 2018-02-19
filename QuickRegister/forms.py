@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 class SignUpForm(UserCreationForm):
 
     # year of admission and graduation
-    year_of_admission = forms.DateField(help_text="Year of Admission")
-    year_of_graduation = forms.DateField(help_text="Expected Year of Graduation")
+    year_of_admission = forms.DateField(help_text="Year of Admission (YYYY-MM-DD)")
+    year_of_graduation = forms.DateField(help_text="Expected Year of Graduation (YYYY-MM-DD)")
 
     # major of studies
     major_of_studies = forms.CharField(help_text="Program of studies")
