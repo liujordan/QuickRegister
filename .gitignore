@@ -1,0 +1,6 @@
+.idea/*
+db.sqlite3
+clubs/migrations/*
+__pycache__
+uploads/*
+quickregister-venv/*
