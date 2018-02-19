@@ -1,7 +1,8 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
-from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -30,5 +31,6 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
-class HomeView(TemplateView):
-	template_name = 'QuickRegister/index.html'
+@login_required
+def home(request):
+    return render(request, 'home.html')
