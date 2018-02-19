@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 
 class Profile(models.Model):
@@ -9,14 +11,14 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # year of admission and graduation
-    year_of_admission = models.DateField()
-    year_of_graduation = models.DateField()
+    year_of_admission = models.DateField(blank=True)
+    year_of_graduation = models.DateField(blank=True)
 
     # major of studies
-    major_of_studies = models.CharField(max_length=50)
+    major_of_studies = models.CharField(max_length=50, blank=True)
 
     # languages
-    primary_language = models.CharField(max_length=30)
+    primary_language = models.CharField(max_length=30, blank=True)
     secondary_language = models.CharField(max_length=30, blank=True)
 
     # resume
@@ -30,3 +32,9 @@ class Profile(models.Model):
 
     def get_absolute_url(self):
         return u'/profile/{}'.format(self.id)
+
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    instance.profile.save()
