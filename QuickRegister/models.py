@@ -11,18 +11,18 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # year of admission and graduation
-    year_of_admission = models.DateField(blank=True)
-    year_of_graduation = models.DateField(blank=True)
+    year_of_admission = models.DateField(null=True)
+    year_of_graduation = models.DateField(null=True)
 
     # major of studies
-    major_of_studies = models.CharField(max_length=50, blank=True)
+    major_of_studies = models.CharField(max_length=50, null=True)
 
     # languages
-    primary_language = models.CharField(max_length=30, blank=True)
-    secondary_language = models.CharField(max_length=30, blank=True)
+    primary_language = models.CharField(max_length=30, null=True)
+    secondary_language = models.CharField(max_length=30, null=True)
 
     # resume
-    resume = models.FileField(upload_to='uploads/resume', blank=True)
+    resume = models.FileField(upload_to='uploads/resume', null=True)
 
     def __str__(self):
         """ (Profile) -> str
@@ -35,6 +35,6 @@ class Profile(models.Model):
 
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
-    if created:
+    if not created:
         Profile.objects.create(user=instance)
     instance.profile.save()
