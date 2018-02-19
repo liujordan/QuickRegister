@@ -4,3 +4,5 @@ clubs/migrations/*
 __pycache__
 uploads/*
 quickregister-venv/*
+staticfiles/*
+static/css/*.css

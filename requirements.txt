@@ -1,1 +1,5 @@
 django>=2
+libsass
+django-compressor
+django-sass-processor
+django-bootstrap3
