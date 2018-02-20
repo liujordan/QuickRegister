@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'clubs',
     'sass_processor',
     'bootstrap3',
+    'qrcode',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +135,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # login redirect for django auth 
 LOGIN_REDIRECT_URL = 'home'
+
+SITE_ID = 1

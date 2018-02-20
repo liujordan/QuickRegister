@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 import datetime
 from django.http import HttpResponse
 
-# Create your views here.
+
 class HomeView(TemplateView):
     template_name = 'clubs/join.html'
 
@@ -18,6 +18,7 @@ class HomeView(TemplateView):
         context['clubs'] = Club.objects.all()
         return context
 
+
 class JoinView(View):
     def get(self, request, *args, **kwargs):
         club = get_object_or_404(Club, pk=kwargs['pk'])
@@ -27,5 +28,14 @@ class JoinView(View):
                 club=club,
                 date_joined=datetime.datetime.now())
             membership.save()
-            return HttpResponse("kill me cuz i joined a club")
-        return HttpResponse("kill me cuz im lonely")
+            return HttpResponse("Successfully joined {}".format(club))
+        return HttpResponse("You are already part of {}".format(club))
+
+
+class QrView(TemplateView):
+    template_name = 'clubs/qr.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['club'] = get_object_or_404(Club, pk=kwargs['pk'])
+        return context

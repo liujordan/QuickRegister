@@ -3,3 +3,4 @@ libsass
 django-compressor
 django-sass-processor
 django-bootstrap3
+django-qrcode
