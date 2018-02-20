@@ -27,10 +27,11 @@ class Club(models.Model):
         return self.profile_set.all()
 
     def get_join_url(self):
-        return reverse('join', args=(self.id,))
+        return reverse('clubs:join', args=(self.id,))
 
     # def get_events(self):
         # return self.event_set.all()
+
 
 class Membership(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

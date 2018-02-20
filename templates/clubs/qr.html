@@ -1,5 +1,6 @@
-{% load qr_tags %}
 {% extends '_layout/base.html' %}
+{% load qr_tags %}
+
 
 {% block content %}
   {% qr_from_text club.get_join_url %}
