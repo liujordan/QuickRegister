@@ -1,0 +1,11 @@
+{% extends '_layout/base.html' %}
+
+{% block content %}
+  <h2>Join a club, {{ user.get_full_name }} <small>{{ user.username }}</small>!</h2>
+  <p>Your suggestions:
+    <ul>
+    {% for club in clubs %}
+        <li>{{club.id}}: {{club}} <a href="join/{{club.id}}">Join Now!</a></li>
+    {% endfor %}
+    </p>
+{% endblock %}

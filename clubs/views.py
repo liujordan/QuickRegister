@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 import datetime
 from django.urls import reverse
 
-# Create your views here.
+
 class HomeView(TemplateView):
     template_name = 'clubs/home.html'
 
@@ -17,6 +17,7 @@ class HomeView(TemplateView):
         # Add in a QuerySet of all the books
         context['clubs'] = Club.objects.all()
         return context
+
 
 class ClubView(TemplateView):
     template_name = 'clubs/club.html'
@@ -28,6 +29,7 @@ class ClubView(TemplateView):
         context['club'] = get_object_or_404(Club, pk=kwargs['pk'])
         return context
 
+
 class JoinView(View):
     def get(self, request, *args, **kwargs):
         club = get_object_or_404(Club, pk=kwargs['pk'])
@@ -37,7 +39,17 @@ class JoinView(View):
                 club=club,
                 date_joined=datetime.datetime.now())
             membership.save()
-        return HttpResponseRedirect(reverse('clubs:home'))
+            return HttpResponse("Successfully joined {}".format(club))
+        return HttpResponse("You are already part of {}".format(club))
+
+
+class QrView(TemplateView):
+    template_name = 'clubs/qr.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['club'] = get_object_or_404(Club, pk=kwargs['pk'])
+        return context
 
 class LeaveView(View):
     def get(self, request, *args, **kwargs):
