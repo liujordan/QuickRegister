@@ -2,10 +2,10 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, RedirectView
 from django.views import View
 from .models import *
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404
 import datetime
-from django.http import HttpResponse
+from django.urls import reverse
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -27,8 +27,7 @@ class JoinView(View):
                 club=club,
                 date_joined=datetime.datetime.now())
             membership.save()
-            return HttpResponse("Join success")
-        return HttpResponse("Join Failed")
+        return HttpResponseRedirect(reverse('clubs:home'))
 
 class LeaveView(View):
     def get(self, request, *args, **kwargs):
@@ -36,5 +35,4 @@ class LeaveView(View):
         membership = Membership.objects.filter(user=self.request.user, club=club)
         if membership:
             membership.delete()
-            return HttpResponse("Leave success")
-        return HttpResponse("Leave Failed")
+        return HttpResponseRedirect(reverse('clubs:home'))
