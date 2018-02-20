@@ -16,6 +16,10 @@ class Club(models.Model):
     def __str__(self):
         return self.name
 
+    # check if user
+    @property
+    def has_user(self, user):
+        return Membership.objects.filter(user=user, club=self) is not None
     # def get_absolute_url(self):
         # return reverse('clubs.views.club', args=[self.slug])
 

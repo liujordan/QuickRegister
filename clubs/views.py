@@ -27,5 +27,14 @@ class JoinView(View):
                 club=club,
                 date_joined=datetime.datetime.now())
             membership.save()
-            return HttpResponse("kill me cuz i joined a club")
-        return HttpResponse("kill me cuz im lonely")
+            return HttpResponse("Join success")
+        return HttpResponse("Join Failed")
+
+class LeaveView(View):
+    def get(self, request, *args, **kwargs):
+        club = get_object_or_404(Club, pk=kwargs['pk'])
+        membership = Membership.objects.filter(user=self.request.user, club=club)
+        if membership:
+            membership.delete()
+            return HttpResponse("Leave success")
+        return HttpResponse("Leave Failed")
