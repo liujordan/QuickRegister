@@ -1,6 +1,10 @@
 {% extends '_layout/base.html' %}
+{% load qr_tags %}
 
 {% block content %}
   <h2>Welcome to {{club}}, {{ user.get_full_name }} <small>{{ user.username }}</small>!</h2>
+  {% qr_from_text request.get_host|add:club.get_join_url %}
+  <br>
+  {{join_url}}
   <p>{{club.description}}</p>
 {% endblock %}
