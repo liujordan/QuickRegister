@@ -1,3 +1,66 @@
+/** global **/
+
+.btn {
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.btn.btn-orange {
+    background-color: #fc5a2b;
+    color: white;
+}
+
+
+/** header **/
 header {
     color: black;
+
+    .logoarea {
+        height: 50px;
+        background-color: #fc5a2b;
+        width: 100%;
+        text-align: center;
+
+        .logo {
+            width: 70px;
+        }
+    }
+}
+
+/** login and sign up **/
+.login {
+    background-color: #f7f7f7;
+    height: 100%;
+    width: 100%;
+}
+
+.box {
+    height: fit-content;
+    min-height: 320px;
+    width: 370px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 5px;
+    border: solid 2px #efefef;
+    text-align: center;
+
+
+    .logo {
+        width: 100px;
+        position: relative;
+        margin-top: -50px;
+    }
+
+    .login-text {
+        margin: 18px;
+        font-weight: 400;
+        font-size: 20px;
+    }
+
+    .login-form {
+        margin: 0px 40px;
+    }
 }
