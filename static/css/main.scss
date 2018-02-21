@@ -1,7 +1,7 @@
 /** global **/
 
 .btn {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 300;
 }
 
@@ -36,7 +36,7 @@ header {
 
 .box {
     height: fit-content;
-    min-height: 320px;
+    min-height: 280px;
     width: 370px;
     position: absolute;
     top: 50%;
@@ -47,7 +47,9 @@ header {
     border: solid 2px #efefef;
     text-align: center;
 
+}
 
+.login .box {
     .logo {
         width: 100px;
         position: relative;
@@ -62,5 +64,21 @@ header {
 
     .login-form {
         margin: 0px 40px;
+
+        input {
+            height: 40px;
+            margin-bottom: 14px;
+            border: solid 2px #efefef;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+        }
+    }
+
+    .guest {
+        text-align: center;
+        color: #afafaf;
+        position: absolute;
+        margin-top: 16px;
+        margin-left: 25%;
     }
 }

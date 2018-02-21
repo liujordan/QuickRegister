@@ -9,16 +9,24 @@
   <div class="box">
     <img class="logo" src="{% static 'images/logo.png' %}">
     <h2 class="login-text">Sign in</h2>
+
     <form class="login-form" method="post">
       {% csrf_token %}
-      {% bootstrap_form form %}
+      <div class="form-group">
+        <input type="text" name="username" autofocus="" maxlength="254" class="form-control" placeholder="Username" title="" required="" id="id_username">
+        <input type="password" name="password" class="form-control" placeholder="Password" title="" required="" id="id_password">
+      </div>
       {% buttons %}
-        <button type="submit" class="btn btn-orange">
+        <button type="submit" class="btn btn-orange" style="width:48%">
           Login
         </button>
-        <a href="/signup" class="btn btn-default">Sign Up</a>
+        <a href="/signup" class="btn" style="width:48%">Forgotten Password?</a>
       {% endbuttons %}
     </form>
+
+    <div class="guest">
+      <p>No account yet? <a href="/signup">Sign up now!</a></p>
+    </div>
   </div>
 </div>
 
