@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404
 import datetime
 from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class HomeView(TemplateView):
@@ -30,7 +31,7 @@ class ClubView(TemplateView):
         return context
 
 
-class JoinView(View):
+class JoinView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         club = get_object_or_404(Club, pk=kwargs['pk'])
         if not Membership.objects.filter(user=self.request.user, club=club):
@@ -51,7 +52,7 @@ class QrView(TemplateView):
         context['club'] = get_object_or_404(Club, pk=kwargs['pk'])
         return context
 
-class LeaveView(View):
+class LeaveView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         club = get_object_or_404(Club, pk=kwargs['pk'])
         membership = Membership.objects.filter(user=self.request.user, club=club)
