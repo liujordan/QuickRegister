@@ -11,10 +11,11 @@
     {% for club in clubs %}
         <li>{{club.id}}: {{club}}
             {% if club in user.club_set.all %}
-            <a href="{{club.id}}/leave">Leave Now!</a></li>
+            <a href="{{club.id}}/leave">Leave Now!</a>
             {% else %}
-            <a href="{{club.id}}/join">Join Now!</a></li>
+            <a href="{{club.id}}/join">Join Now!</a>
             {% endif %}
+        </li>
     {% endfor %}
     </p>
 {% endblock %}
