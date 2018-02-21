@@ -1,5 +1,8 @@
 {% extends '_layout/base.html' %}
 
+{% block header %}{% include '_layout/header.html' %}{% endblock %}
+
+
 {% block content %}
   <h2>Join a club, {{ user.get_full_name }} <small>{{ user.username }}</small>!</h2>
   <p>Clubs you're in:
