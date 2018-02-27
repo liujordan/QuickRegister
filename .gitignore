@@ -5,3 +5,4 @@ uploads/*
 quickregister-venv/*
 staticfiles/*
 static/css/*.css
+.DS_Store
