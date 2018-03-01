@@ -7,12 +7,14 @@ name = "pypi"
 
 [packages]
 
-Django = ">=2"
+django = "*"
 libsass = "*"
-django_compressor = "*"
+django-compressor = "*"
 django-sass-processor = "*"
 "django-bootstrap3" = "*"
 django-qrcode = "*"
+whitenoise = "*"
+django-excel = "*"
 
 
 [dev-packages]
