@@ -33,10 +33,11 @@ $ python manage.py createsuperuser
 ```
 $ source qr-env/bin/activate
 ```
-2. Initialize database and start server
+2. Initialize database, compile scss and start server
 ```
 $ cd quickregister
 $ python manage.py migrate
+$ python manage.py compilescss
 $ python manage.py runserver
 ```
 3. You can access the admin panel by going to `https://[development URL]:8000/admin/` and entering the superuser details you have created in setup.
