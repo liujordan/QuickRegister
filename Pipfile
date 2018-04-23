@@ -15,6 +15,9 @@ django-sass-processor = "*"
 django-qrcode = "*"
 whitenoise = "*"
 django-excel = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
 
 
 [dev-packages]

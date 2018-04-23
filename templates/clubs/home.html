@@ -2,14 +2,21 @@
 
 {% block header %}{% include '_layout/header.html' %}{% endblock %}
 
-
 {% block content %}
-  <h2>Join a club, {{ user.get_full_name }} <small>{{ user.username }}</small>!</h2>
-  <p>Clubs you're in:
-    <ul>
-        {% for club in user.club_set.all %} {{club}} {% endfor %}
-    </ul></p>
-  <p>Your suggestions:
+  {% if user.is_authenticated  %}
+    <h2>Join a club, {{ user.get_full_name }} <small>{{ user.username }}</small>!</h2>
+    <p>Clubs you're in:
+      <ul>
+        {% for club in user.club_set.all %}
+          <li>{{club}}</li>
+        {% endfor %}
+      </ul>
+    </p>
+  {% else %}
+    <h2>Join a club!</h2>
+  {% endif %}
+  <h3><a href="create">Create a club!</a></h3>
+  <p>Popular Clubs:
     <ul>
     {% for club in clubs %}
         <li>{{club.id}}: {{club}}

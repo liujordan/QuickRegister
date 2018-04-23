@@ -8,7 +8,28 @@ import datetime
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from QuickRegister.models import Profile
+from django.contrib import messages
 
+from django.views.generic.edit import FormView
+from .forms import ClubForm
+
+class CreateView(LoginRequiredMixin, FormView):
+    template_name = 'clubs/create.html'
+    form_class = ClubForm
+    success_url = '/clubs'
+
+    def form_valid(self, form):
+        club = form.save(commit=False)
+        # club.refresh_from_db()
+        name = form.cleaned_data.get('name')
+        if not Club.objects.filter(name=name):
+            club.name = name
+            club.description = form.cleaned_data.get('description')
+            club.save()
+            messages.success(self.request, 'Successfully created ' + club.name)
+        else:
+            messages.error(self.request, 'Club with the same name already exists')
+        return super().form_valid(form)
 
 class HomeView(TemplateView):
     template_name = 'clubs/home.html'
