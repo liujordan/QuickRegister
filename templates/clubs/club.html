@@ -5,8 +5,25 @@
 
 
 {% block content %}
-  <h2>Welcome to {{club}}, {{ user.get_full_name }} <small>{{ user.username }}</small>!</h2>
-  {% qr_from_text request.get_host|add:club.get_join_url %}
-  <p>{{club.description}}</p>
-  <a href="members/export_csv">Download club data in CSV</a>
+  <h2>Welcome to {{object}}, {{ user.get_full_name }} <small>{{ user.username }}</small>!</h2>
+  {% qr_from_text request.get_host|add:object.get_join_url %}
+  <p>About: {{object.description}}</p>
+  <h3>Owner(s)</h3>
+  <ul>
+    {% for owner in object.get_owners %}
+    <li>{{owner.user.username}}</li>
+    {% endfor %}
+  </ul><h3>Staff</h3>
+  <ul>
+    {% for staff in object.get_staff %}
+    <li>{{staff.user.username}}</li>
+    {% endfor %}
+  </ul>
+  <h3>Member(s)</h3>
+  <ul>
+    {% for member in object.members.all %}
+    <li>{{member}}</li>
+    {% endfor %}
+  </ul>
+  <a href="members/export_csv">Download object data in CSV</a>
 {% endblock %}

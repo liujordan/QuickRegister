@@ -11,6 +11,7 @@ from QuickRegister.models import Profile
 from django.contrib import messages
 
 from django.views.generic.edit import FormView
+from django.views.generic.detail import DetailView
 from .forms import ClubForm
 
 class CreateView(LoginRequiredMixin, FormView):
@@ -26,6 +27,8 @@ class CreateView(LoginRequiredMixin, FormView):
             club.name = name
             club.description = form.cleaned_data.get('description')
             club.save()
+
+            club.add_member(self.request.user, owner=True)
             messages.success(self.request, 'Successfully created ' + club.name)
         else:
             messages.error(self.request, 'Club with the same name already exists')
@@ -42,15 +45,15 @@ class HomeView(TemplateView):
         return context
 
 
-class ClubView(TemplateView):
+class ClubView(DetailView):
     template_name = 'clubs/club.html'
-
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
-        context['club'] = get_object_or_404(Club, pk=kwargs['pk'])
-        return context
+    model = Club
+    # def get_context_data(self, **kwargs):
+    #     # Call the base implementation first to get a context
+    #     context = super().get_context_data(**kwargs)
+    #     # Add in a QuerySet of all the books
+    #     context['club'] = get_object_or_404(Club, pk=kwargs['pk'])
+    #     return context
 
 def export_csv(request, **kwargs):
     if request.method == 'GET':
